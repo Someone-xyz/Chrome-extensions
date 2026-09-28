@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Translator Extension</title>
+
+  <style>
+    body{
+      width:300px;
+      padding:15px;
+      font-family:Arial, sans-serif;
+      background:#f5f5f5;
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:15px;
+    }
+
+    select,
+    textarea,
+    button{
+      width:100%;
+      margin-top:10px;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      box-sizing:border-box;
+      font-size:14px;
+    }
+
+    textarea{
+      resize:none;
+      height:100px;
+    }
+
+    button{
+      background:#007bff;
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    button:hover{
+      background:#0056b3;
+    }
+
+    #result{
+      margin-top:15px;
+      padding:10px;
+      background:white;
+      border-radius:8px;
+      min-height:80px;
+      border:1px solid #ddd;
+      white-space:pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Translator</h2>
+
+  <select id="fromLang"></select>
+
+  <select id="toLang"></select>
+
+  <textarea id="inputText" placeholder="Enter text"></textarea>
+
+  <button id="translateBtn">Translate</button>
+
+  <div id="result">Translation will appear here...</div>
+
+  <!-- FILE NAME SAME -->
+  <script src="indx.js"></script>
+
+</body>
+</html>

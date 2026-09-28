@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Postman</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+header{
+padding:20px;
+background:#111827;
+font-size:25px;
+font-weight:bold;
+text-align:center;
+border-bottom:1px solid #333;
+}
+
+.container{
+width:95%;
+margin:auto;
+padding:20px;
+}
+
+.top{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+select,input{
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:15px;
+}
+
+select{
+background:#1e293b;
+color:white;
+width:140px;
+}
+
+#url{
+flex:1;
+background:#1e293b;
+color:white;
+}
+
+button{
+background:#3b82f6;
+border:none;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+}
+
+.tab{
+padding:10px 20px;
+background:#1e293b;
+cursor:pointer;
+border-radius:6px;
+}
+
+.active{
+background:#2563eb;
+}
+
+.section{
+display:none;
+}
+
+.show{
+display:block;
+}
+
+textarea{
+width:100%;
+height:220px;
+background:#111827;
+color:#00ff99;
+border:none;
+padding:15px;
+font-size:14px;
+border-radius:10px;
+resize:vertical;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table td{
+padding:8px;
+}
+
+table input{
+width:100%;
+background:#111827;
+color:white;
+}
+
+.response{
+margin-top:20px;
+background:#111827;
+padding:20px;
+border-radius:10px;
+}
+
+.info{
+display:flex;
+gap:20px;
+margin-bottom:15px;
+}
+
+pre{
+background:#020617;
+padding:15px;
+border-radius:10px;
+overflow:auto;
+max-height:500px;
+color:#00ff99;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+🚀 Mini Postman
+</header>
+
+<div class="container">
+
+<div class="top">
+
+<select id="method">
+<option>GET</option>
+<option>POST</option>
+<option>PUT</option>
+<option>PATCH</option>
+<option>DELETE</option>
+</select>
+
+<input id="url" placeholder="https://jsonplaceholder.typicode.com/posts">
+
+<button onclick="sendRequest()">Send</button>
+
+</div>
+
+<div class="tabs">
+
+<div class="tab active" onclick="openTab('body',this)">Body</div>
+
+<div class="tab" onclick="openTab('headers',this)">Headers</div>
+
+<div class="tab" onclick="openTab('params',this)">Query Params</div>
+
+</div>
+
+<div id="body" class="section show">
+
+<textarea id="bodyData">
+{
+"title":"Hello",
+"body":"Testing",
+"userId":1
+}
+</textarea>
+
+</div>
+
+<div id="headers" class="section">
+
+<table id="headersTable">
+
+<tr>
+<td><input placeholder="Header"></td>
+<td><input placeholder="Value"></td>
+</tr>
+
+<tr>
+<td><input placeholder="Header"></td>
+<td><input placeholder="Value"></td>
+</tr>
+
+</table>
+
+</div>
+
+<div id="params" class="section">
+
+<table id="paramsTable">
+
+<tr>
+<td><input placeholder="Key"></td>
+<td><input placeholder="Value"></td>
+</tr>
+
+<tr>
+<td><input placeholder="Key"></td>
+<td><input placeholder="Value"></td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="response">
+
+<div class="info">
+
+<div>Status :
+<span id="status">-</span>
+</div>
+
+<div>Time :
+<span id="time">-</span>
+</div>
+
+</div>
+
+<pre id="response">
+Response will appear here...
+</pre>
+
+</div>
+
+</div>
+
+<script>
+
+function openTab(id,e){
+
+document.querySelectorAll(".section").forEach(x=>x.classList.remove("show"));
+
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id).classList.add("show");
+
+e.classList.add("active");
+
+}
+
+function readTable(id){
+
+let rows=document.querySelectorAll("#"+id+" tr");
+
+let obj={};
+
+rows.forEach(r=>{
+
+let inp=r.querySelectorAll("input");
+
+if(inp[0].value.trim()!="")
+obj[inp[0].value]=inp[1].value;
+
+});
+
+return obj;
+
+}
+
+async function sendRequest(){
+
+let method=document.getElementById("method").value;
+
+let url=document.getElementById("url").value;
+
+let headers=readTable("headersTable");
+
+let params=readTable("paramsTable");
+
+let body=document.getElementById("bodyData").value;
+
+let query=new URLSearchParams(params).toString();
+
+if(query)
+url+="?"+query;
+
+let options={
+
+method,
+
+headers
+
+};
+
+if(method!="GET" && method!="DELETE"){
+
+options.body=body;
+
+if(!headers["Content-Type"])
+options.headers["Content-Type"]="application/json";
+
+}
+
+let start=performance.now();
+
+try{
+
+let res=await fetch(url,options);
+
+let end=performance.now();
+
+document.getElementById("status").innerHTML=res.status;
+
+document.getElementById("time").innerHTML=Math.round(end-start)+" ms";
+
+let text=await res.text();
+
+try{
+
+text=JSON.stringify(JSON.parse(text),null,4);
+
+}catch{}
+
+document.getElementById("response").textContent=text;
+
+}catch(e){
+
+document.getElementById("response").textContent=e;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

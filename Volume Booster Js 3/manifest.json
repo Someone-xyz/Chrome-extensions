@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Volume Booster",
+  "version": "1.0",
+  "description" : "Boost your voloume on any website ",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon" : "unnamed.png"
+  }
+}

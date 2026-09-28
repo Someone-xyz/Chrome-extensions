@@ -1,0 +1,9 @@
+{
+    "name": "Coding Ai",
+    "version": "1.0",
+    "description" : "Learn Coding with your Coding Ai assistant",
+   " manifest_version": 3,
+   "action" : {
+    "default_popup" : "quiz.html"
+   }
+}

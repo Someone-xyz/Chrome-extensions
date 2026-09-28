@@ -1,0 +1,102 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Websites Link Extension</title>
+    <style>
+        body { 
+            width: 350px;
+            padding: 20px;
+            background: #0f172a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            background: #1e293b;
+            color: white;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        #saveBtn {
+            width: 100%;
+            padding: 12px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #saveBtn:hover {
+            background: #16a34a;
+        }
+
+        #showsavedItm {
+            margin-top: 20px;
+        }
+
+        #linkers {
+            display: block;
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #38bdf8;
+            text-decoration: none;
+            word-break: break-all;
+            transition: 0.3s;
+        }
+
+        #linkers:hover {
+            background: #334155;
+        }
+
+        button {
+            padding: 6px 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Save Websites Link Extension</h1>
+    <input type="text" id="websiteLink" placeholder="Enter Website Link">
+    <button id="saveBtn">Save Link</button>
+    <div id="showsavedItm"></div>
+    <script src="popup.js"></script>
+
+</body>
+
+</html>

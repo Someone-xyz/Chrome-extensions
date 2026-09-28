@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Reader Extension",
+  "version": "1.0",
+  "description": "Reads selected text",
+
+  "permissions": [
+    "contextMenus",
+    "scripting",
+    "activeTab"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "reader.html",
+    "default_icon": "icon.png"
+  }
+}

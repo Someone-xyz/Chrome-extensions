@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Todo App Extension",
+    "version": "2.0",
+    "description": "Save your work what todo and donot forgot your work you need to do",
+    "action": {
+        "default_popup": "todo.html"
+    }
+}

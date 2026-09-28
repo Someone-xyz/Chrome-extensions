@@ -1,0 +1,9 @@
+{
+    "name" : "Tempreature Convertor",
+    "description" : "Convert your tempreature in celcius , ferhenheight and kelvin at any time. This is for scientest and this is free to use. You can use it at any time and anywhere Do calculation without using your brain. Please like it and add this to favorite extensions. Thank You. Donot forgot to add to favorite and like it.",
+    "version" : "4.4",
+    "action" : {
+        "default_popup" : "temp.html"
+    },
+    "manifest_version" : 3
+}

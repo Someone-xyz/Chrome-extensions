@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Save Websites Link Extension",
+    "version": "3.0",
+    "description": "Save your favorite website links and see later what you want to see and save your time to search again and again for the same website link and save your time",
+    "action": {
+        "default_popup": "popup.html"
+     }
+}

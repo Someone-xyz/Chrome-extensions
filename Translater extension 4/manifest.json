@@ -1,0 +1,20 @@
+{
+  "name": "Text Translator",
+  "manifest_version": 3,
+  "version": "1.5",
+  "description" : "Translate your text in 100 + languages",
+
+  "action": {
+    "default_popup": "indx.html"
+  },
+
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "<all_urls>",
+    "https://*/*"
+  ]
+}

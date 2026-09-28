@@ -1,0 +1,11 @@
+{
+  "name": "Color Select Value + RGB Code",
+  "version": "1.0",
+  "description" : "Get color code in HEX RGB RGBA and Color value you choosed",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon" : "unnamed.png"
+  },
+  "permissions": []
+}
